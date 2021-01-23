@@ -2,7 +2,7 @@
   <div class="comment">
     <div class="bg-white blog-body my-4 p-4">
       <div class="bg-light author-div text-primary w-fit px-2 mr-4">
-        <p>
+        <p class="mt-2 mb-2 px-2">
           {{ c.creator.name }}
         </p>
       </div>
@@ -36,14 +36,14 @@ export default {
 }
 .blog-body {
   @extend .light-shadow;
-  border-radius: 5% 0% 0% 5%;
+  border-radius: 15px 0 0 15px;
   border-right: 4px solid $primary;
 }
 .light-shadow {
     box-shadow: 1px 1px 4px $dark-transparent, 1px -1px 4px $dark-transparent, 1px -1px 4px $dark-transparent, -1px 1px 4px $dark-transparent;
   }
   .author-div {
-    border-radius: 8%;
+    border-radius: 15px;
     float: left;
 
   }

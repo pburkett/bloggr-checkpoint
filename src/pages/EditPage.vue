@@ -56,7 +56,6 @@ export default {
       async edit() {
         try {
           const id = await blogService.update('blogs/' + state.post.id, '', state.post)
-          debugger
           console.log(id)
           router.push({ name: 'Blog', params: { id } })
           state.newHouse = {}
@@ -85,8 +84,8 @@ export default {
 .bb{
   height: 5px;
   background-color: $primary;
-  transform: translateX(80px);
-  border-radius:4%;
+  transform: translateX(33%);
+  border-radius:15px;
 }
   .light-shadow {
     box-shadow: 1px 1px 4px $dark-transparent, 1px -1px 4px $dark-transparent, 1px -1px 4px $dark-transparent, -1px 1px 4px $dark-transparent;

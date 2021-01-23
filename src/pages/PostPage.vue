@@ -2,7 +2,7 @@
   <div class="row mt-5 justify-content-center">
     <div class="col-12">
       <div class=" m-auto header-div w-fit">
-        <h1 :v-else="!state.editMode">
+        <h1>
           What's up?
         </h1>
         <div class="bb"></div>
@@ -62,8 +62,8 @@ export default {
 .bb{
   height: 5px;
   background-color: $primary;
-  transform: translateX(80px);
-  border-radius:4%;
+  transform: translateX(33%);
+  border-radius: 100px;
 }
   .light-shadow {
     box-shadow: 1px 1px 4px $dark-transparent, 1px -1px 4px $dark-transparent, 1px -1px 4px $dark-transparent, -1px 1px 4px $dark-transparent;
@@ -80,7 +80,7 @@ font-size: 1.2rem ;
 textarea {
   background-color: $white !important;
   border-left: 5px solid $secondary;
-border-top: 5px solid $secondary;
+  border-top: 5px solid $secondary;
 @extend .light-shadow;
 }
 </style>

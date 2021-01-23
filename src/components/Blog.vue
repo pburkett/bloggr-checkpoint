@@ -57,7 +57,7 @@ export default {
 .blog-header {
   height: 80px;
   background-color: $primary;
-  border-radius: 3%;
+  border-radius: 10px;
   transform: translateY(-60px);
 }
 .header-row {
