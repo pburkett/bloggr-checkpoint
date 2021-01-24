@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="col-6 mt-4 mb-4">
+    <div v-if="state.account.id" class="col-6 mt-4 mb-4">
       <form @submit.prevent="create" id="comment-form">
         <div class="row">
           <div class="col-12">
@@ -42,6 +42,19 @@
           </div>
         </div>
       </form>
+    </div>
+    <div
+      @click="login"
+      v-if="!user.isAuthenticated"
+      class="col-6 mt-4 mb-4 log-btn"
+    >
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3 class="bg-white w-100 comment-input p-4 not-auth-comment-box">
+            Log in to comment!
+          </h3>
+        </div>
+      </div>
     </div>
 
     <div v-if="comments.length > 0" class="col-8">
@@ -63,12 +76,14 @@ import { useRoute } from 'vue-router'
 import blogService from '../services/BlogService'
 import logger from '../utils/Logger'
 import Comment from '../components/Comment'
+import { AuthService } from '../services/AuthService'
 export default {
   name: 'BlogPage',
   setup() {
     const route = useRoute()
     const state = reactive({
-      commenting: ''
+      commenting: '',
+      account: computed(() => AppState.account)
     })
     onMounted(async() => {
       try {
@@ -89,9 +104,13 @@ export default {
           console.error(e)
         }
       },
+      async login() {
+        AuthService.loginWithPopup()
+      },
       blog: computed(() => AppState.blogPage),
       comments: computed(() => AppState.comments),
       name: computed(() => AppState.blogPage.creator ? AppState.blogPage.creator.name : ''),
+      user: computed(() => AppState.user),
       state
     }
   },
@@ -169,5 +188,16 @@ textarea {
 .btn-row {
   height: 25px;
 }
-
+.not-auth-comment-box {
+transition: 200ms;
+  background-color: $white !important;
+  border-radius: 15px 0 15px 0;
+  border-left: 5px solid $primary;
+  border-right: 5px solid $primary;
+  height: 80px;
+  @extend .light-shadow;
+}
+.log-btn {
+  cursor: pointer;
+}
 </style>
