@@ -18,7 +18,7 @@
       <button v-if="state.displayEdit == false && state.account.id == c.creator.id" @click="state.displayEdit = true" class="btn-white btn-outline-warning btn delete-div text-dark w-fit px-2 mr-2">
         Edit
       </button>
-      <button :class="{'mb-3': state.displayEdit}" v-else-if="state.displayEdit == true && state.account.id == c.creator.id" @click="edit" class="btn-white btn-outline-warning btn delete-div text-dark w-fit px-2 mr-4">
+      <button :class="{'mb-3': state.displayEdit}" v-else-if="state.displayEdit == true && state.account.id == c.creator.id" @click="edit" class="btn-white btn-success btn delete-div text-dark w-fit px-2 mr-4">
         Submit
       </button>
       <p v-if="state.displayEdit == false">
