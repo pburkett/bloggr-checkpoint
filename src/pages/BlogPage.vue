@@ -26,19 +26,25 @@
     </div>
 
     <div class="col-6 mt-4 mb-4">
-      <form action="">
+      <form @submit.prevent="create" id="comment-form">
         <div class="row">
-          <textarea v-model="state.commenting" placeholder="comment . . ." maxlength="300" class="bg-white w-100 comment-input p-4 "></textarea>
-          <transition name="fade">
-            <button v-show="state.commenting != ''" class="comment-btn btn-outline-primary btn-light btn offset-8">
-              Submit
-            </button>
-          </transition>
+          <div class="col-12">
+            <textarea v-model="state.commenting" placeholder="comment . . ." maxlength="500" class="bg-white w-100 comment-input p-4 "></textarea>
+          </div>
+        </div>
+        <div class="row btn-row">
+          <div class="col-12">
+            <transition name="fade">
+              <button type="submit" form="comment-form" v-show="state.commenting != ''" class="comment-btn btn-outline-primary bg-white btn offset-8">
+                Submit
+              </button>
+            </transition>
+          </div>
         </div>
       </form>
     </div>
 
-    <div v-if="comments.length > 0" class="col-8 mt-5">
+    <div v-if="comments.length > 0" class="col-8">
       <div class="col-12">
         <div class=" offset-2 header-div w-fit">
           <h3>Comments</h3>
@@ -73,6 +79,16 @@ export default {
       }
     })
     return {
+      async create() {
+        try {
+          const temp = state.commenting
+          state.commenting = ''
+          await blogService.post('comments', '', { body: temp, blog: this.blog.id })
+          await blogService.get(route.params.id + '/comments', 'comments')
+        } catch (e) {
+          console.error(e)
+        }
+      },
       blog: computed(() => AppState.blogPage),
       comments: computed(() => AppState.comments),
       name: computed(() => AppState.blogPage.creator ? AppState.blogPage.creator.name : ''),
@@ -117,8 +133,8 @@ textarea {
 @extend .light-shadow;
 }
 .comment-input:focus {
-    border-left: 10px solid $primary;
-  border-right: 10px solid $primary;
+    border-left: 15px solid $primary;
+  border-right: 15px solid $primary;
   transition: 300ms ease;
   height: 200px;
   transform: scale(1.1);
@@ -127,23 +143,31 @@ textarea {
 }
 .comment-btn {
   height: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
+  @extend .light-shadow;
+}
+.comment-btn:hover {
+  background-color: $primary !important;
 }
 .fade-enter-active,
 .fade-leave-active {
   transition: all 300ms ease;
   transform: translateX(0px);
-  height: 40px;
-  margin-top: 40px;
+  // height: 40px;
+  margin-top: 20px;
+  @extend .light-shadow;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   height: 40px;
   opacity: 0;
-  transform: translateX(-100px);
-  transform: translateY(-100px);
+  transform: translateX(-20px);
+  @extend .light-shadow;
   margin-top: 0px;
+}
+.btn-row {
+  height: 25px;
 }
 
 </style>

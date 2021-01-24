@@ -56,7 +56,6 @@ export default {
       async edit() {
         try {
           const id = await blogService.update('blogs/' + state.post.id, '', state.post)
-          console.log(id)
           router.push({ name: 'Blog', params: { id } })
           state.newHouse = {}
         } catch (error) {

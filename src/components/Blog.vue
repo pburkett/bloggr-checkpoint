@@ -39,7 +39,6 @@ export default {
     return {
       assignEditContent() {
         AppState.editBlog = props.b
-        console.log(AppState.editBlog)
       }
     }
   },
