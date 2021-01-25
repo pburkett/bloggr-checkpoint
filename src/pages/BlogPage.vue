@@ -25,21 +25,22 @@
       </div>
     </div>
 
-    <div v-if="state.account.id" class="col-6 mt-4 mb-4">
+    <div v-if="state.account.id" class="col-8 mt-4 mb-4">
       <form @submit.prevent="create" id="comment-form">
         <div class="row">
-          <div class="col-12">
+          <div class="col-10 offset-1">
             <textarea v-model="state.commenting" placeholder="comment . . ." maxlength="500" class="bg-white w-100 comment-input p-4 "></textarea>
           </div>
-        </div>
-        <div class="row btn-row">
-          <div class="col-12">
+          <!-- </div> -->
+          <!-- <div class="row btn-row"> -->
+          <div class="col-1">
             <transition name="fade">
-              <button type="submit" form="comment-form" v-show="state.commenting != ''" class="comment-btn btn-outline-primary bg-white btn offset-8">
+              <button type="submit" form="comment-form" v-show="state.commenting != ''" class=" comment-btn btn-outline-primary bg-white btn offset-8">
                 Submit
               </button>
             </transition>
           </div>
+          <!-- </div> -->
         </div>
       </form>
     </div>
@@ -58,7 +59,7 @@
     </div>
 
     <div v-if="comments.length > 0" class="col-8">
-      <div class="col-12">
+      <div class="col-6">
         <div class=" offset-2 header-div w-fit">
           <h3>Comments</h3>
           <div class="bb"></div>
@@ -143,6 +144,7 @@ export default {
     box-shadow: 2px 2px 20px $dark-transparent, 2px -2px 20px $dark-transparent, 2px -2px 20px $dark-transparent, -2px 2px 20px $dark-transparent;
   }
 textarea {
+  resize: none;
   transition: 200ms;
   background-color: $white !important;
   border-radius: 15px 0 15px 0;
@@ -162,7 +164,7 @@ textarea {
 }
 .comment-btn {
   height: 40px;
-  margin-top: 20px;
+margin-top: 20px;
   @extend .light-shadow;
 }
 .comment-btn:hover {
@@ -172,7 +174,6 @@ textarea {
 .fade-leave-active {
   transition: all 300ms ease;
   transform: translateX(0px);
-  // height: 40px;
   margin-top: 20px;
   @extend .light-shadow;
 }
