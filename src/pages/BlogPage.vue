@@ -35,7 +35,7 @@
           <!-- <div class="row btn-row"> -->
           <div class="col-1">
             <transition name="fade">
-              <button type="submit" form="comment-form" v-show="state.commenting != ''" class=" comment-btn btn-outline-primary bg-white btn offset-8">
+              <button type="submit" form="comment-form" v-show="state.commenting != ''" class="comment-btn btn-outline-primary bg-white btn offset-8">
                 Submit
               </button>
             </transition>
@@ -47,10 +47,10 @@
     <div
       @click="login"
       v-if="!user.isAuthenticated"
-      class="col-6 mt-4 mb-4 log-btn"
+      class="col-8 mt-4 mb-4 log-btn"
     >
       <div class="row">
-        <div class="col-12 text-center">
+        <div class="col-10 offset-1 text-center">
           <h3 class="bg-white w-100 comment-input p-4 not-auth-comment-box">
             Log in to comment!
           </h3>
@@ -102,7 +102,7 @@ export default {
           await blogService.post('comments', '', { body: temp, blog: this.blog.id })
           await blogService.get(route.params.id + '/comments', 'comments')
         } catch (e) {
-          console.error(e)
+
         }
       },
       async login() {
